@@ -43,7 +43,7 @@ def main():
         # Build a Linux command to create the user with no initial password but with full GECOS information.
         cmd = "/usr/sbin/adduser --disabled-password --gecos '%s' %s" % (gecos, username)
         # print(cmd)
-        # os.system(cmd)  # Uncomment to actually create the user.
+        os.system(cmd)  # it actually create the user.
 
         # Inform the user that the password is being set for the new account.
         print("==> Setting the password for %s..." % (username))
@@ -51,7 +51,7 @@ def main():
         # Construct a command that sets the password by piping it into the 'passwd' command.
         cmd = "/bin/echo -ne '%s\n%s' | /usr/bin/sudo /usr/bin/passwd %s" % (password, password, username)
         # print(cmd)
-        # os.system(cmd)  # Uncomment to actually set the password.
+        os.system(cmd)  # it actually set the password.
 
         # Add the user to each group listed, unless the group field is '-'.
         for group in groups:
@@ -60,7 +60,7 @@ def main():
                 print("==> Assigning %s to the %s group..." % (username, group))
                 cmd = "/usr/sbin/adduser %s %s" % (username, group)
                 # print(cmd)
-                # os.system(cmd)  # Uncomment to assign the user to the group.
+                os.system(cmd)  # it assign the user to the group.
 
 
 if __name__ == '__main__':
